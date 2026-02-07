@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Amisha 💖</title>
+
+<style>
+* { box-sizing: border-box; font-family: 'Poppins','Comic Sans MS', cursive; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 0.5s;
+}
+
+body.dark {
+  background: linear-gradient(135deg, #2b193d, #5c2a6e);
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  background: rgba(255,255,255,0.9);
+  padding: 28px 20px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+h1 { color: #ff4d6d; margin-bottom: 10px; }
+p { color: #ff5c8a; font-size: 1.05rem; }
+
+.buttons {
+  position: relative;
+  height: 90px;
+  margin-top: 15px;
+}
+
+button {
+  padding: 14px 26px;
+  font-size: 1rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
+
+#noBtn {
+  position: absolute;
+  background: #ffd6e0;
+  color: #ff4d6d;
+  left: 55%;
+  top: 10px;
+}
+
+.message {
+  display: none;
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #ff2f5e;
+}
+
+/* Heart rain */
+.heart {
+  position: absolute;
+  font-size: 18px;
+  animation: fall 6s linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(110vh); }
+}
+
+/* Love letter modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.letter {
+  background: #fff0f6;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 20px;
+  color: #ff2f5e;
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close {
+  text-align: right;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Apple Music Embed */
+#musicEmbed {
+  display: none; /* hidden until YES clicked */
+  margin-top: 20px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 10px;
+  }
+  #noBtn {
+    position: static; /* easier to touch */
+  }
+  #musicEmbed iframe {
+    height: 140px; /* smaller for phones */
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Amisha 💕</h1>
+  <p>My precious Kanchu 🥰<br>You make my heart feel like home.</p>
+  <p>Will you be my Valentine, Princess? 💘</p>
+
+  <div class="buttons">
+    <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+    <button id="noBtn" onclick="noClicked()">No 🙈</button>
+  </div>
+
+  <div class="message" id="message"></div>
+
+  <!-- Apple Music Embed -->
+  <div id="musicEmbed">
+    <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="175" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/au/song/hum-tere-pyar-mein/931736697"></iframe>
+  </div>
+</div>
+
+<!-- Love Letter -->
+<div class="modal" id="letterModal">
+  <div class="letter">
+    <div class="close" onclick="closeLetter()">✖</div>
+    <p>
+      Hey Sweetie,<br><br>
+      I know you might have so many questions and doubts in this but I will give my everything to make this work.
+      Just know that you are very precious to me. I will take care of things that are precious to me.
+      I would love to take care of you until my last breath and even afterlife.<br><br>
+      Will you be my Valentine Princess ??????
+    </p>
+  </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const message = document.getElementById("message");
+const musicEmbed = document.getElementById("musicEmbed");
+const modal = document.getElementById("letterModal");
+
+// Runaway NO button
+function moveNo() {
+  const parent = document.querySelector(".buttons");
+  noBtn.style.left = Math.random() * (parent.clientWidth - noBtn.offsetWidth) + "px";
+  noBtn.style.top = Math.random() * (parent.clientHeight - noBtn.offsetHeight) + "px";
+}
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+function noClicked() {
+  message.style.display = "block";
+  message.innerHTML = "Aww Kanchu 🥺💔 your heart already knows the answer… click YES 💕";
+}
+
+function yesClicked() {
+  musicEmbed.style.display = "block"; // Show Apple Music embed
+  modal.style.display = "flex"; // Auto open letter
+}
+
+// Close letter → celebration
+function closeLetter() {
+  modal.style.display = "none";
+  setTimeout(showCelebration, 300);
+}
+
+function showCelebration() {
+  document.body.innerHTML = `
+    <div style="height:100vh;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);text-align:center;color:white;padding:20px;">
+      <div>
+        <h1>YAYYYY 💖🎉</h1>
+        <p style="font-size:1.3rem;">
+          Amisha (my Kanchu 😘)<br>
+          You just made my heart the happiest ever 💕
+        </p>
+      </div>
+    </div>`;
+}
+
+// Heart rain
+setInterval(() => {
+  if(window.innerWidth < 500 && Math.random() > 0.5) return; // fewer hearts on small screens
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
+}, 300);
+</script>
+
+</body>
+</html>
